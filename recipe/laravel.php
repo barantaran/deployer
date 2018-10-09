@@ -62,50 +62,50 @@ task('artisan:down', function () {
 
 desc('Execute artisan migrate');
 task('artisan:migrate', function () {
-    run('{{bin/php}} {{release_path}}/artisan migrate --force');
+    run('artisan migrate --force');
 })->once();
 
 desc('Execute artisan migrate:fresh');
 task('artisan:migrate:fresh', function () {
-    run('{{bin/php}} {{release_path}}/artisan migrate:fresh --force');
+    run('cd {{release_path}} && {{bin/php}} artisan migrate:fresh --force');
 });
 
 desc('Execute artisan migrate:rollback');
 task('artisan:migrate:rollback', function () {
-    $output = run('{{bin/php}} {{release_path}}/artisan migrate:rollback --force');
+    $output = run('cd {{release_path}} && {{bin/php}} artisan migrate:rollback --force');
     writeln('<info>' . $output . '</info>');
 });
 
 desc('Execute artisan migrate:status');
 task('artisan:migrate:status', function () {
-    $output = run('{{bin/php}} {{release_path}}/artisan migrate:status');
+    $output = run('cd {{release_path}} && {{bin/php}} artisan migrate:status');
     writeln('<info>' . $output . '</info>');
 });
 
 desc('Execute artisan db:seed');
 task('artisan:db:seed', function () {
-    $output = run('{{bin/php}} {{release_path}}/artisan db:seed --force');
+    $output = run('cd {{release_path}} && {{bin/php}} artisan db:seed --force');
     writeln('<info>' . $output . '</info>');
 });
 
 desc('Execute artisan cache:clear');
 task('artisan:cache:clear', function () {
-    run('{{bin/php}} {{release_path}}/artisan cache:clear');
+    run('cd {{release_path}} && {{bin/php}} artisan cache:clear');
 });
 
 desc('Execute artisan config:cache');
 task('artisan:config:cache', function () {
-    run('{{bin/php}} {{release_path}}/artisan config:cache');
+    run('cd {{release_path}} && {{bin/php}} artisan config:cache');
 });
 
 desc('Execute artisan route:cache');
 task('artisan:route:cache', function () {
-    run('{{bin/php}} {{release_path}}/artisan route:cache');
+    run('cd {{release_path}} && {{bin/php}} artisan route:cache');
 });
 
 desc('Execute artisan view:clear');
 task('artisan:view:clear', function () {
-    run('{{bin/php}} {{release_path}}/artisan view:clear');
+    run('cd {{release_path}} && {{bin/php}} artisan view:clear');
 });
 
 desc('Execute artisan optimize');
@@ -114,7 +114,7 @@ task('artisan:optimize', function () {
     $currentVersion = get('laravel_version');
 
     if (version_compare($currentVersion, $deprecatedVersion, '<')) {
-        run('{{bin/php}} {{release_path}}/artisan optimize');
+        run('cd {{release_path}} && {{bin/php}} artisan optimize');
     }
 });
 
@@ -129,7 +129,7 @@ task('artisan:storage:link', function () {
     $currentVersion = get('laravel_version');
 
     if (version_compare($currentVersion, $needsVersion, '>=')) {
-        run('{{bin/php}} {{release_path}}/artisan storage:link');
+        run('cd {{release_path}} && {{bin/php}} artisan storage:link');
     }
 });
 
