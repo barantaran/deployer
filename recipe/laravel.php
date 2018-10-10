@@ -62,7 +62,7 @@ task('artisan:down', function () {
 
 desc('Execute artisan migrate');
 task('artisan:migrate', function () {
-    run('artisan migrate --force');
+    run('cd {{release_path}} && {{bin/php}} artisan migrate --force');
 })->once();
 
 desc('Execute artisan migrate:fresh');
